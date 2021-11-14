@@ -31,3 +31,5 @@ The configuration is read from a json config file
 ]   
 ## Compare Values
 TestDataChecker checks out and exp for keys from config read in by GetTestDataConfig 
+## Sample how to use
+One use is shown in the file testtextdatasimple_test.go
