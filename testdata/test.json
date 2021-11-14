@@ -21,5 +21,19 @@
                 }
             }
         ]
+    },
+    { 
+        "name": "TestUseOfOut", 
+        "keys": ["id", "name"],
+        "datas": [
+            {
+                "level": "warn",
+                "in": { "key": "string", "value": "-"},
+                "exp": {
+                    "id": "OutId",
+                    "name": "OutName"
+                }
+            }
+        ]
     }
 ]

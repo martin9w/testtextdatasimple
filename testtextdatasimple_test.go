@@ -61,6 +61,10 @@ func TestFuncNoAlias(t *testing.T) {
 	log.Debug("OK - No Alias was set")
 }
 
+func TestUseOfOut(t *testing.T) {
+	testSwitch(t, "TestUseOfOut")
+}
+
 func testChecker(t *testing.T, keys []string, testData TestData, found bool, name string) {
 	if !found {
 		t.Error("nothing found for: ", name)
@@ -96,6 +100,12 @@ func testSwitch(t *testing.T, name string) {
 				}
 				foundData = found
 			case "TestFuncNoAlias":
+			case "TestUseOfOut":
+				testData.Out = map[string]string{
+					"id":   "OutId",
+					"name": "OutName",
+				}
+				foundData = true
 			}
 			testChecker(t, testFuncData.Keys, testData, foundData, name)
 		}
