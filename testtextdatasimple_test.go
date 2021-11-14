@@ -18,7 +18,7 @@ var (
 )
 
 func init() {
-	datas, err := GetTestDataKonfig(TestJsonFile)
+	datas, err := GetTestDataConfig(TestJsonFile)
 	if err != nil {
 		log.Fatal(datas, err)
 	}

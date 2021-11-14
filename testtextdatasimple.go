@@ -12,7 +12,7 @@ import (
 const (
 	NullString = ""
 	OutVal     = "out value"
-	EstVal     = "est value"
+	ExpVal     = "exp value"
 )
 
 type (
@@ -30,7 +30,7 @@ type (
 		Params KeyValues         `json:"params"`
 		In     KeyValue          `json:"in"`
 		Out    map[string]string `json:"out"`
-		Est    map[string]string `json:"est"`
+		Exp    map[string]string `json:"exp"`
 	}
 	KeyValue struct {
 		Key   string `json:"key"`
@@ -66,8 +66,8 @@ func (a TestData) String() string {
 	if jsonString {
 		return jsonOut(json.Marshal(a))
 	}
-	return fmt.Sprintf("Level: %s, Params: %v, In: %v, Out: %v, Est: %v",
-		a.Level, a.Params, a.In, a.Out, a.Est)
+	return fmt.Sprintf("Level: %s, Params: %v, In: %v, Out: %v, Exp: %v",
+		a.Level, a.Params, a.In, a.Out, a.Exp)
 }
 
 func (a KeyValue) String() string {
@@ -89,7 +89,7 @@ func GetJsonString() bool {
 	return jsonString
 }
 
-func GetTestDataKonfig(filename string) ([]TestFuncData, error) {
+func GetTestDataConfig(filename string) ([]TestFuncData, error) {
 	file, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
@@ -116,16 +116,16 @@ func TestDataChecker(keys []string, testData TestData) ([]string, bool) {
 	errors := []string{}
 	for _, k := range keys {
 		outVal, outOk := testData.Out[k]
-		estVal, estOk := testData.Est[k]
-		if outOk && estOk {
-			if outVal != estVal {
+		expVal, expOk := testData.Exp[k]
+		if outOk && expOk {
+			if outVal != expVal {
 				check = false
 				errors = append(errors,
 					fmt.Sprintf("%s: %s: %s != %s: %s",
-						k, OutVal, testData.Out[k], EstVal, testData.Est[k]))
+						k, OutVal, testData.Out[k], ExpVal, testData.Exp[k]))
 			} else {
 				log.Debug(fmt.Sprintf("%s: %s: %s == %s: %s",
-					k, OutVal, testData.Out[k], EstVal, testData.Est[k]))
+					k, OutVal, testData.Out[k], ExpVal, testData.Exp[k]))
 			}
 		} else {
 			check = false
@@ -134,8 +134,8 @@ func TestDataChecker(keys []string, testData TestData) ([]string, bool) {
 			if !outOk {
 				errorMsg += fmt.Sprintf("%s: missing %s", k, OutVal)
 			}
-			if !estOk {
-				errorMsg += fmt.Sprintf("%s: missing %s", k, EstVal)
+			if !expOk {
+				errorMsg += fmt.Sprintf("%s: missing %s", k, ExpVal)
 			}
 			errors = append(errors, errorMsg)
 		}

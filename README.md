@@ -9,22 +9,25 @@ The configuration is read from a json config file
     {
         "name": "TestFuncId",
         "keys": [
-            "id", "in"
+            "id", "in"                                                   // What should be compared 
         ],
-        "level": "warn",
+        "level": "warn",                                                 // default log-level for Test
         "datas": [
             {
-                "level": "debug",
+                "level": "debug",                                        // log-level for data
                 "in":   {
                     "key": "string",
                     "value": "InValue"
                 },
                 "params": [{"key": "id", "value": "ParamIdValue"}],
-                "est": {
+                "out": {}                                                // values to compare
+                "exp": {                                                 // expected values
                     "id": "ParamIdValue",
                     "in": "InValue"
                 }
             }
         ]
     }
-]    
+]   
+## Compare Values
+TestDataChecker checks out and exp for keys from config read in by GetTestDataConfig 

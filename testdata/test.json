@@ -1,5 +1,4 @@
 [
-
     {   "name": "TestFuncAlias", "alias": "TestFuncId"},
     {   "name": "TestFuncNoAlias", "alias": "", "level": "warn"},
     {
@@ -16,7 +15,7 @@
                     "value": "InValue"
                 },
                 "params": [{"key": "id", "value": "ParamIdValue"}],
-                "est": {
+                "exp": {
                     "id": "ParamIdValue",
                     "in": "InValue"
                 }
@@ -37,7 +36,7 @@
                     "value": "string-02"
                 },
                     "params": [{"key": "id", "value": "value"}],
-                "est": {
+                "exp": {
                     "key-tf-01": "key-tf-02-val",
                     "name-tf-01": "name-tf-02-val"
                 }
@@ -55,10 +54,10 @@
                 "level": "warn",
                 "in":   {
                     "key": "file",
-                    "value": "test/test.json"
+                    "value": "texp/test.json"
                 },
                     "params": [{"key": "id", "value": "value"}],
-                "est": {
+                "exp": {
                     "key-tf-01": "key-tf-03-val",
                     "name-tf-01": "name-tf-03-val"
                 }
