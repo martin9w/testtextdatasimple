@@ -10,7 +10,7 @@
         "level": "warn",
         "datas": [
             {
-                "level": "debug",
+                "level": "warn",
                 "in":   {
                     "key": "string",
                     "value": "InValue"
