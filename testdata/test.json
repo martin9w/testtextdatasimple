@@ -1,7 +1,7 @@
 [
 
     {   "name": "TestFuncAlias", "alias": "TestFuncId"},
-    {   "name": "TestFuncNoAlias", "alias": "", "level": "debug"},
+    {   "name": "TestFuncNoAlias", "alias": "", "level": "warn"},
     {
         "name": "TestFuncId",
         "keys": [
