@@ -21,52 +21,5 @@
                 }
             }
         ]
-    },
-    {
-        "name": "TestFunc02InString",
-        "keys": [
-            "key-tf-02", "name-tf-02"
-        ],
-        "level": "warn",
-        "datas": [
-            {
-                "level": "warn",
-                "in":   {
-                    "key": "string",
-                    "value": "string-02"
-                },
-                    "params": [{"key": "id", "value": "value"}],
-                "exp": {
-                    "key-tf-01": "key-tf-02-val",
-                    "name-tf-01": "name-tf-02-val"
-                }
-            }
-        ]
-    },
-    {
-        "name": "TestFunc03InFile",
-        "keys": [
-            "key-tf-03", "name-tf-03"
-        ],
-        "level": "warn",
-        "datas": [
-            {
-                "level": "warn",
-                "in":   {
-                    "key": "file",
-                    "value": "texp/test.json"
-                },
-                    "params": [{"key": "id", "value": "value"}],
-                "exp": {
-                    "key-tf-01": "key-tf-03-val",
-                    "name-tf-01": "name-tf-03-val"
-                }
-            }
-        ]
-    },
-    {   "name": "TestFunc04Names",
-        "datas" : [
-
-        ]
     }
 ]
