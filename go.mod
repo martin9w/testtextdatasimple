@@ -1,4 +1,4 @@
-module testtextdatasimple
+module github.com/martin9w/testtextdatasimple
 
 go 1.16
 
