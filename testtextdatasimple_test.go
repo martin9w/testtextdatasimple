@@ -36,6 +36,7 @@ func TestFuncId(t *testing.T) {
 }
 
 func TestFuncAlias(t *testing.T) {
+	log.SetLevel(log.DebugLevel)
 	setJson := GetJsonString()
 	testFuncData, error := GetTestDatasEntry(testFuncDatas, "TestFuncAlias")
 	if error != nil || testFuncData.Alias == NullString {
@@ -69,7 +70,7 @@ func testChecker(t *testing.T, keys []string, testData TestData, found bool, nam
 	if !found {
 		t.Error("nothing found for: ", name)
 	}
-	errors, check := TestDataChecker(keys, testData)
+	errors, check := TestDataChecker(t, keys, testData)
 	if !check {
 		t.Errorf("%v", errors)
 	}

@@ -5,8 +5,11 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"testing"
 
+	"github.com/gookit/goutil/arrutil"
 	log "github.com/sirupsen/logrus"
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -111,22 +114,14 @@ func GetTestDataConfig(filename string) ([]TestFuncData, error) {
 	return config, err
 }
 
-func TestDataChecker(keys []string, testData TestData) ([]string, bool) {
+func TestDataChecker(t *testing.T, keys []string, testData TestData) ([]string, bool) {
 	check := true
 	errors := []string{}
 	for _, k := range keys {
 		outVal, outOk := testData.Out[k]
 		expVal, expOk := testData.Exp[k]
 		if outOk && expOk {
-			if outVal != expVal {
-				check = false
-				errors = append(errors,
-					fmt.Sprintf("%s: %s: %s != %s: %s",
-						k, OutVal, testData.Out[k], ExpVal, testData.Exp[k]))
-			} else {
-				log.Debug(fmt.Sprintf("%s: %s: %s == %s: %s",
-					k, OutVal, testData.Out[k], ExpVal, testData.Exp[k]))
-			}
+			assert.Equal(t, outVal, expVal)
 		} else {
 			check = false
 			errorMsg := "Errors in config of testData: "
@@ -152,11 +147,15 @@ func SetTestDataLevel(testData TestData, levelDefault string) {
 	case "error":
 		log.SetLevel(log.ErrorLevel)
 	case "warn":
-		log.SetLevel(log.WarnLevel)
+		if !arrutil.Contains([]string{"debug", "info"}, level) {
+			log.SetLevel(log.WarnLevel)
+		}
 	case "debug":
 		log.SetLevel(log.DebugLevel)
 	case "info":
-		log.SetLevel(log.InfoLevel)
+		if !arrutil.Contains([]string{"debug"}, level) {
+			log.SetLevel(log.InfoLevel)
+		}
 	default:
 	}
 }
